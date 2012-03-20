@@ -1,0 +1,17 @@
+
+{% for pic in photos %}
+<div id="album">
+    <a href="{% url get_photo slug pic.id %}" class="thumbnail" title="{{ pic.title }}" rel="photo-gallery">
+        <div class="photoalbum" style="background: url({{ pic.url }}_z.jpg) no-repeat; background-position:center;">
+        </div>
+        <h3>{{ pic.title }}</h3>
+    </a>
+</div>
+{% endfor %}
+
+{% if page != pages %}
+<div class="endless_container">
+    <a class="endless_more" href="{% url get_activity_photos slug next %}" rel="page">more</a>
+    <div class="endless_loading" style="display: none;">loading</div>
+</div>
+{% endif %}
