@@ -8,7 +8,7 @@ It allows the user to integrate a flikr set on a page with minimal effort.
 And provides useful tools such as dynamic loading ( endless scroller ).
 
  The plugin requires "Beej's `Python Flickr API`, get it from pypi.
- * Add it to your ``INSTALLED_APPS``::
+ * Add it to your ``INSTALLED_APPS``
 
 ```python
     INSTALLED_APPS = (
@@ -18,7 +18,7 @@ And provides useful tools such as dynamic loading ( endless scroller ).
 ```
  * Run ``python manage.py syncdb``
  * Obtain a Flickr API key at Flickr_.
- * Add the key and the secret to your ``settings.py``::
+ * Add the key and the secret to your ``settings.py``
 
 ```python
     FLICKR_API_KEY = 'xxxx'
@@ -28,10 +28,10 @@ And provides useful tools such as dynamic loading ( endless scroller ).
  * Place it on a page and use it!
 
 
-.. _django CMS: http://www.django-cms.org
-.. _Python Flickr API: http://stuvel.eu/projects/flickrapi
-.. _Flickr: http://www.flickr.com/services/apps/create/apply
+django CMS: http://www.django-cms.org
+Python Flickr API: http://stuvel.eu/projects/flickrapi
+Flickr: http://www.flickr.com/services/apps/create/apply
 
 # Contribute
 
-If you like the project, please, contact me at commonzenpython@gmail.com (gtalk and email) and help me improve it.
+If you like the project, plz, contact me at commonzenpython@gmail.com (gtalk and email) and help me improve it.
