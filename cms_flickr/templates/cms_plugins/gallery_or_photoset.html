@@ -1,0 +1,6 @@
+
+{% for photo in photos %}
+<li>
+    <img src="{{ photo.url }}" alt="{{ photo.title }}" width="{{ photo.width }}" height="{{ photo.height }}" />
+</li>
+{% endfor %}

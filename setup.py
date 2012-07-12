@@ -9,5 +9,5 @@ setup(
     author="Paulo Alvarado",
     author_email="commonzenpython@gmail.com",
     url="http://github.com/czpython/django-cms-flickr",
-    packages=['django_cms_flickr'],
+    packages=['cms_flickr'],
 )
