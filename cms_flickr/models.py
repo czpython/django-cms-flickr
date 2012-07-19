@@ -1,7 +1,10 @@
+from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from cms.models.pluginmodel import CMSPlugin
+
+FLICKR_TEMPLATES = settings.FLICKR_TEMPLATES
 
 
 # Thanks to https://github.com/lazerscience/cmsplugin-flickr for these constants
@@ -59,6 +62,7 @@ class FlickrGalleryOrPhotoset(CMSPlugin):
     flickr_fid = models.CharField(_("Flickr Gallery or Photoset Id"), max_length=75)
     flickr_photocount = models.IntegerField(_("How many photos ?"), default=500)
     flickr_photo_size = models.CharField(_("Photo size"), choices=SIZE_CHOICES, max_length=1, default=SMALL_SQUARE)
+    flickr_template = models.CharField(_("Photo Layout Template"), choices=FLICKR_TEMPLATES, max_length=200, default=FLICKR_TEMPLATES[0][0])
 
     def __unicode__(self):
         return self.flickr_api_type

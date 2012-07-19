@@ -2,7 +2,6 @@ import json
 
 from django.conf import settings
 from django.utils.translation import ugettext as _
-from django.core.exceptions import ImproperlyConfigured
 
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
@@ -11,11 +10,11 @@ from cms_flickr.models import FlickrGalleryOrPhotoset
 
 from flickrapi import FlickrAPI, FlickrError
 
-try:
-    API_KEY = settings.FLICKR_API_KEY
-    SECRET = settings.FLICKR_SECRET
-except AttributeError:
-    raise ImproperlyConfigured, u"Need to define FLICKR_API_KEY and FLICKR_SECRET"
+API_KEY = settings.FLICKR_API_KEY
+
+SECRET = settings.FLICKR_SECRET
+
+FLICKR_TEMPLATES = settings.FLICKR_TEMPLATES
 
 FLICKR_IMAGE_URL = "http://farm%(farm)s.static.flickr.com/%(server)s/%(id)s_%(secret)s_%(size)s.jpg"
 
@@ -23,7 +22,7 @@ class FlickrGalleryOrPhotosetPlugin(CMSPluginBase):
     model = FlickrGalleryOrPhotoset
     name = _("Flickr Gallery/Photoset")
     admin_preview = False
-    render_template = "cms_plugins/flickr/gallery_or_photoset.html"
+    render_template = FLICKR_TEMPLATES[0][0]
 
     def render(self, context, instance, placeholder):
         flickr = FlickrAPI(API_KEY, SECRET)
@@ -45,6 +44,7 @@ class FlickrGalleryOrPhotosetPlugin(CMSPluginBase):
                 photo['width'] = photo.get('width_%s' % instance.flickr_photo_size)
                 photo['height'] = photo.get('height_%s' % instance.flickr_photo_size)
 
+        self.render_template = instance.flickr_template
         context.update({
             'obj': instance,
             'photos': photos,
