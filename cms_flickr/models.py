@@ -31,16 +31,22 @@ ORDER_CHOICES =((DATE_POSTED_ASC, _('Date Posted Ascending')),
                 (RELEVANCE, _('Relevance')))
 
 SMALL_SQUARE = 's'
+LARGE_SQUARE = 'q'
 THUMBNAIL = 't'
 SMALL = 'm'
+SMALL_TWO = 'n'
 MEDIUM = '-'
+MEDIUM_TWO = 'z'
 LARGE = 'b'
 ORIGINAL = 'o'
 
 SIZE_CHOICES = ((SMALL_SQUARE, _('Small Square 75px x 75px')),
+                (LARGE_SQUARE, _('Large Square 150px x 150px')),
                 (THUMBNAIL, _('Thumbnail, 100px on longest side')),       
                 (SMALL, _('Small, 240px on longest side')),
+                (SMALL_TWO, _('Small, 320px on longest side')),
                 (MEDIUM, _('Medium, 500px on longest side')),
+                (MEDIUM_TWO, _('Medium, 640px on longest side')),
                 (LARGE, _('Large, 1024px on longest side')),
                 (ORIGINAL, _('Original image')))
 
@@ -58,11 +64,12 @@ class FlickrGalleryOrPhotoset(CMSPlugin):
     )
 
     flickr_api_type = models.CharField(_("Collection Type"), max_length='10', choices=TYPES, 
-        help_text="Is this a Gallery or Photoset ?")
+        help_text="Is this a Gallery or Photoset ?", default=PHOTOSET)
     flickr_fid = models.CharField(_("Flickr Gallery or Photoset Id"), max_length=75)
     flickr_photocount = models.IntegerField(_("How many photos ?"), default=500)
-    flickr_photo_size = models.CharField(_("Photo size"), choices=SIZE_CHOICES, max_length=1, default=SMALL_SQUARE)
-    flickr_template = models.CharField(_("Photo Layout Template"), choices=FLICKR_TEMPLATES, max_length=200, default=FLICKR_TEMPLATES[0][0])
+    flickr_photo_size = models.CharField(_("Photo size"), choices=SIZE_CHOICES, max_length=1, default=ORIGINAL)
+    flickr_template = models.CharField(_("Photo Layout Template"), choices=FLICKR_TEMPLATES, 
+        max_length=200, default=FLICKR_TEMPLATES[0][0])
 
     def __unicode__(self):
         return self.flickr_api_type

@@ -26,8 +26,10 @@ class FlickrGalleryOrPhotosetPlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         flickr = FlickrAPI(API_KEY, SECRET)
+
         call = '%s.%s' % (FlickrGalleryOrPhotoset.APIS[instance.flickr_api_type], 'getPhotos')
         api = getattr(flickr, call)
+        
         type_id = instance.flickr_api_type + '_id'
         params = {type_id: instance.flickr_fid, 'per_page': instance.flickr_photocount, 
         'format': 'json', 'nojsoncallback':'1', 'extras': 'url_sq, url_t, url_s, url_m, url_o'}
