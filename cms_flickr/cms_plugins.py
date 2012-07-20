@@ -32,7 +32,7 @@ class FlickrGalleryOrPhotosetPlugin(CMSPluginBase):
         
         type_id = instance.flickr_api_type + '_id'
         params = {type_id: instance.flickr_fid, 'per_page': instance.flickr_photocount, 
-        'format': 'json', 'nojsoncallback':'1', 'extras': 'url_sq, url_t, url_s, url_m, url_o'}
+        'format': 'json', 'nojsoncallback':'1', 'extras': 'url_s, url_q, url_t,  url_m, url_n, url_-, url_z, url_b, url_o'}
         try:
             response = json.loads(api(**params))
         except FlickrError, e:
